@@ -8,27 +8,37 @@ public class EmoteGameManager : MonoBehaviour
     public GameObject[] EmotePos;
     public GameObject EmoteBoard;
     public WebSocketClient webSocketClient;
+    public float emoteTimer = 10f;
 
     GameObject[] currentEmotes = new GameObject[3];
     void Start()
     {
         SubscribeToSocketMessage();
-        SummonEmotes();
-        //StartCoroutine(SummonEmotes());
+        StartCoroutine(SummonEmotes());
 
     }
 
     public void SubscribeToSocketMessage()
     {
-        if(WebSocketClient.instance != null)
+        if (WebSocketClient.instance != null)
         {
-            WebSocketClient.instance.SubscribeToReceiver(message => {
+            WebSocketClient.instance.SubscribeToReceiver(message =>
+            {
+                string emoteSeq = "";
+                foreach (GameObject pog in currentEmotes)
+                {
+                    emoteSeq += pog.tag + " ";
+                }
+                if (message == emoteSeq.Trim())
+                {
+                    WebSocketClient.instance.SendWebSocketMessage("Hotdog");
+                }
                 Debug.Log(message);
             });
         }
     }
 
-    public void SummonEmotes()
+    IEnumerator SummonEmotes()
     {
         EmoteBoard.SetActive(true);
         for (int i = 0; i < 3; i++)
@@ -40,16 +50,13 @@ public class EmoteGameManager : MonoBehaviour
             go.transform.position = EmotePos[i].transform.position;
             currentEmotes[i] = go;
         }
-        //yield return new WaitForSeconds(30f);
-
-        //EmoteBoard.SetActive(false);
+        yield return new WaitForSeconds(emoteTimer);
+        EmoteBoard.SetActive(false);
+        EmoteBoard.transform.position = new Vector3(Random.Range(-4.60f, 4.76f), Random.Range(-3f, 3f), 0);
+        yield return new WaitForSeconds(emoteTimer);
+        StartCoroutine(SummonEmotes());
     }
 
-    void RandomizeEmote()
-    {
-        int randomNumber = Random.Range(0, emotes.Count);
-
-    }
 
     public void hehexd()
     {

@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 4924409186351928603}
   m_Layer: 0
   m_Name: ResidentSleeper
-  m_TagString: Untagged
+  m_TagString: ResidentSleeper
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

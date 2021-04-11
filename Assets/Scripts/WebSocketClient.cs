@@ -34,7 +34,7 @@ public class WebSocketClient : MonoBehaviour
     // Start is called before the first frame update
     async void Start()
     {
-        websocket = new WebSocket("ws://3ff88e7281cb.ngrok.io");
+        websocket = new WebSocket("ws://7fe0597d5603.ngrok.io");
 
         websocket.OnOpen += () =>
         {
@@ -58,7 +58,7 @@ public class WebSocketClient : MonoBehaviour
 
             // getting the message as a string
             var message = System.Text.Encoding.UTF8.GetString(bytes);
-            foreach(MessageReceiver receiver in this.receivers)
+            foreach (MessageReceiver receiver in this.receivers)
             {
                 receiver(message);
             }
@@ -78,15 +78,11 @@ public class WebSocketClient : MonoBehaviour
 #endif
     }
 
-    async void SendWebSocketMessage()
+    public async void SendWebSocketMessage(string message)
     {
         if (websocket.State == WebSocketState.Open)
         {
-            // Sending bytes
-            await websocket.Send(new byte[] { 10, 20, 30 });
-
-            // Sending plain text
-            await websocket.SendText("plain text message");
+            await websocket.SendText(message);
         }
     }
 
