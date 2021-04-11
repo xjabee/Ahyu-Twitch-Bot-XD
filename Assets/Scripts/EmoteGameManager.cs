@@ -12,10 +12,20 @@ public class EmoteGameManager : MonoBehaviour
     GameObject[] currentEmotes = new GameObject[3];
     void Start()
     {
-
+        SubscribeToSocketMessage();
         SummonEmotes();
         //StartCoroutine(SummonEmotes());
 
+    }
+
+    public void SubscribeToSocketMessage()
+    {
+        if(WebSocketClient.instance != null)
+        {
+            WebSocketClient.instance.SubscribeToReceiver(message => {
+                Debug.Log(message);
+            });
+        }
     }
 
     public void SummonEmotes()

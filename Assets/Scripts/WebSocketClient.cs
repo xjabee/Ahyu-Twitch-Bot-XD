@@ -5,9 +5,31 @@ using UnityEngine;
 
 using NativeWebSocket;
 
+public delegate void MessageReceiver(string message);
+
 public class WebSocketClient : MonoBehaviour
 {
     WebSocket websocket;
+
+    public static WebSocketClient instance;
+    private List<MessageReceiver> receivers;
+
+    public int SubscribeToReceiver(MessageReceiver receiver)
+    {
+        this.receivers.Add(receiver);
+        return this.receivers.Count - 1;
+    }
+
+    public void UnsubscribeReceiver(int index)
+    {
+        this.receivers.RemoveAt(index);
+    }
+
+    void Awake()
+    {
+        this.instance = this;
+        this.receiver = message => {};
+    }
 
     // Start is called before the first frame update
     async void Start()
@@ -36,6 +58,10 @@ public class WebSocketClient : MonoBehaviour
 
             // getting the message as a string
             var message = System.Text.Encoding.UTF8.GetString(bytes);
+            foreach(MessageReceiver receiver in this.receivers)
+            {
+                receiver(message);
+            }
             Debug.Log("OnMessage! " + message);
         };
 
