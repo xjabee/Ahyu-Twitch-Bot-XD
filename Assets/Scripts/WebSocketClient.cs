@@ -28,7 +28,7 @@ public class WebSocketClient : MonoBehaviour
     void Awake()
     {
         this.instance = this;
-        this.receiver = message => {};
+        this.receivers = message => {};
     }
 
     // Start is called before the first frame update
