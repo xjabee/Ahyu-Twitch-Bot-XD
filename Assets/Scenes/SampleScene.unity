@@ -359,6 +359,7 @@ GameObject:
   - component: {fileID: 923436985}
   - component: {fileID: 923436984}
   - component: {fileID: 923436986}
+  - component: {fileID: 923436987}
   m_Layer: 0
   m_Name: GameManager
   m_TagString: Untagged
@@ -373,7 +374,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 923436983}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: ec4966b8948a45443845b2592552fffd, type: 3}
   m_Name: 
@@ -417,6 +418,32 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4743820d496e3e34db0968ff60da542a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &923436987
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 923436983}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 158b8cb7591abcb419b8d2432c4bd475, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  emotes:
+  - {fileID: 8197144438280438823, guid: 4391d5f77626d894ea56b31ae6988564, type: 3}
+  - {fileID: 3586174024744135178, guid: a4f369f7b52361749889c0b3820ca165, type: 3}
+  - {fileID: 1062935150988667701, guid: dc9009c07dac4414aa1391488761210b, type: 3}
+  - {fileID: 1073859556074055327, guid: c3d4011b81c47ed45a86e8c2c7bfd392, type: 3}
+  - {fileID: 7480080745617435538, guid: 404adaee8a8a9304dbccf7ba638e89de, type: 3}
+  EmotePos:
+  - {fileID: 370050731}
+  - {fileID: 1885478536}
+  - {fileID: 1433838385}
+  EmoteBoard: {fileID: 639483219}
+  webSocketClient: {fileID: 923436986}
+  emoteTimer: 10
+  SlotTimer: 10
 --- !u!1 &1069444296
 GameObject:
   m_ObjectHideFlags: 0
